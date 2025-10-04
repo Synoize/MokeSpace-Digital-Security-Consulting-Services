@@ -9,11 +9,10 @@ import Stats from '../components/Stats'
 const LandingPage = () => {
   return (
     <div className='w-full mx-auto'>
-      <Navbar/>
+      {/* <Navbar/> */}
       <HeaderSection/>
       <ServicesSection/>
       <ChooseSection/>
-      {/* <Stats/> */}
       <Footer/>
     </div>
   )

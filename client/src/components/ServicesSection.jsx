@@ -9,7 +9,7 @@ import {
   Database,
   Shield,
   ArrowRight,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 
 const services = [
@@ -59,7 +59,8 @@ const ServiceCard = ({ title, desc, Icon, featured }) => {
   return (
     <div
       className={[
-        "group rounded-2xl border bg-neutral-900/60 p-6 md:p-7",
+        
+        "group rounded-2xl border bg-neutral-900/60 p-6 md:p-7 cursor-pointer",
         "border-neutral-800 hover:border-orange-500/60",
         "shadow-[0_0_0_1px_rgba(255,255,255,0.04)]",
         "hover:shadow-[0_8px_40px_-8px_rgba(255,122,0,0.25)]",
@@ -100,7 +101,8 @@ const SectionSection = () => {
           Our <span className="text-neutral-100">Services</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-neutral-400 ">
-          Comprehensive digital solutions tailored to <br className="md:hidden"/> your business needs
+          Comprehensive digital solutions tailored to{" "}
+          <br className="md:hidden" /> your business needs
         </p>
 
         {/* grid */}
@@ -111,14 +113,14 @@ const SectionSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex justify-center ">
           <button
             className={[
               "inline-flex items-center gap-2 rounded-xl border border-orange-600/30",
               "bg-neutral-900 px-5 py-3 text-sm md:text-base font-semibold",
               "text-neutral-100 hover:bg-orange-600/10",
-              "shadow-[0_10px_30px_-10px_rgba(255,122,0,0.35)]",
-              "transition-all"
+              "hover:shadow-[0_10px_30px_-10px_rgba(255,122,0,0.35)] cursor-pointer",
+              "transition-all",
             ].join(" ")}
           >
             View All Services <ArrowRight className="size-4" />
@@ -126,15 +128,20 @@ const SectionSection = () => {
         </div>
 
         {/* feature bullets (optional small row under CTA) */}
-        <div className="mt-8 grid grid-cols-1 gap-3 text-sm text-neutral-400 sm:grid-cols-3">
-          <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <span className="i">✔</span> 10+ Years Experience
+        <div className="mt-8 grid grid-cols-1 gap-4 text-sm text-neutral-400 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="flex items-center gap-2 justify-center sm:justify-start text-center sm:text-left">
+            <span className="text-green-500 text-base">✔</span>
+            <span>10+ Years Experience</span>
           </div>
-          <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <span className="i">✔</span> 24/7 Support
+
+          <div className="flex items-center gap-2 justify-center sm:justify-start text-center sm:text-left">
+            <span className="text-green-500 text-base">✔</span>
+            <span>24/7 Support</span>
           </div>
-          <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <span className="i">✔</span> 100% Secure
+
+          <div className="flex items-center gap-2 justify-center sm:justify-start text-center sm:text-left">
+            <span className="text-green-500 text-base">✔</span>
+            <span>100% Secure</span>
           </div>
         </div>
       </div>

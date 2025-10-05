@@ -21,7 +21,7 @@ const ChooseSection = () => {
         </h2>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 " >
           {/* Feature Card */}
           {[
             "Expert team with 10+ years experience",
@@ -31,7 +31,7 @@ const ChooseSection = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-4 bg-[#242424] border border-[#2C2C2C] rounded-2xl p-6 hover:bg-[#2B2B2B] transition"
+              className="flex items-center gap-4 bg-[#242424] border border-[#2C2C2C] rounded-2xl p-6 hover:bg-[#2B2B2B] transition cursor-pointer"
             >
               <div className="bg-[#FF6600]/10 p-3 rounded-full">
                 <CheckCircle className="text-[#FF6600] w-6 h-6" />

@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "./App.css";
+
 import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { useContext } from "react";
 import { AppContext } from "./context/AppContext";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
+import "./App.css";
 
 function App() {
   const { token } = useContext(AppContext);
@@ -23,11 +23,11 @@ function App() {
         {!token ? (
           <>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Dashboard />} />
-            <Route path="/about" element={<Dashboard />} />
-            <Route path="/partner" element={<Dashboard />} />
-            <Route path="/contact" element={<Dashboard />} />
-            <Route path="/privacy-policy" element={<Dashboard />} />
+            <Route path="/login" element={<LandingPage />} />
+            <Route path="/about" element={<LandingPage />} />
+            <Route path="/partner" element={<LandingPage />} />
+            <Route path="/contact" element={<LandingPage />} />
+            <Route path="/privacy-policy" element={<LandingPage />} />
           </>
         ) : (
           /* If logged in */

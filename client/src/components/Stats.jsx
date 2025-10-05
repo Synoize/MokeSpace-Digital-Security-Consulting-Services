@@ -13,7 +13,7 @@ const Card = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "rounded-lg border text-card-foreground shadow-sm",
       className
     )}
     {...props}
@@ -110,7 +110,7 @@ const StatsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 sm:py-20 lg:py-24 bg-[#0C0C0C] text-[#FF6B00]"
+      className="py-16 sm:py-20 lg:py-24 bg-[#0C0C0C] text-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -119,10 +119,10 @@ const StatsSection = () => {
             return (
               <Card
                 key={index}
-                className="p-6 sm:p-8 text-center bg-card/50 backdrop-blur-sm border-border 
+                className="p-6 sm:p-8 text-center  backdrop-blur-sm border-border 
                            hover:border-primary transition-all duration-500 
                            hover:shadow-[0_0_30px_rgba(255,102,0,0.2)] group
-                           bg-[#131313] cursor-pointer"
+                           bg-[#131313] cursor-pointer hover:text-[#FF6B00]"
               >
                 <CardHeader>
                   <Icon

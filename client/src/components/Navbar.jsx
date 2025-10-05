@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="/" className="cursor-pointer hover:text-orange-400 hover:border-b">
+          <a href="/" className="cursor-pointer hover:text-orange-400 hover:border-b ">
             Home
           </a>
           <a className="cursor-pointer hover:text-orange-400 hover:border-b">

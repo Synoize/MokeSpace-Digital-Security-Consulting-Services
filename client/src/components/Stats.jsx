@@ -13,7 +13,7 @@ const Card = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border text-card-foreground shadow-sm",
+      "rounded-2xl border text-card-foreground shadow-md transition-all duration-300 ease-out",
       className
     )}
     {...props}
@@ -24,25 +24,29 @@ Card.displayName = "Card";
 const CardHeader = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn("flex flex-col items-center justify-center", className)}
     {...props}
   />
 ));
 CardHeader.displayName = "CardHeader";
 
+const CardContent = React.forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col items-center justify-center flex-grow", className)}
+    {...props}
+  />
+));
+CardContent.displayName = "CardContent";
+
 const CardDescription = React.forwardRef(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-neutral-400 mt-1", className)}
     {...props}
   />
 ));
 CardDescription.displayName = "CardDescription";
-
-const CardContent = React.forwardRef(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-));
-CardContent.displayName = "CardContent";
 
 // ----------------- Stats Section -----------------
 const StatsSection = () => {
@@ -59,20 +63,16 @@ const StatsSection = () => {
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
+  // Counter animation
   const Counter = ({ end, duration, suffix }) => {
     const [count, setCount] = React.useState(0);
 
@@ -80,23 +80,15 @@ const StatsSection = () => {
       if (!isVisible) return;
 
       let startTime;
-      let animationFrame;
-
       const animate = (timestamp) => {
         if (!startTime) startTime = timestamp;
         const progress = timestamp - startTime;
         const percentage = Math.min(progress / duration, 1);
-
         setCount(Math.floor(end * percentage));
-
-        if (percentage < 1) {
-          animationFrame = requestAnimationFrame(animate);
-        }
+        if (percentage < 1) requestAnimationFrame(animate);
       };
 
-      animationFrame = requestAnimationFrame(animate);
-
-      return () => cancelAnimationFrame(animationFrame);
+      requestAnimationFrame(animate);
     }, [isVisible, end, duration]);
 
     return (
@@ -110,35 +102,31 @@ const StatsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 sm:py-20 lg:py-24 bg-[#0C0C0C] text-white"
+      className="py-20 md:py-24 bg-[#0C0C0C] text-white"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <Card
                 key={index}
-                className="p-6 sm:p-8 text-center  backdrop-blur-sm border-border 
-                           hover:border-primary transition-all duration-500 
-                           hover:shadow-[0_0_30px_rgba(255,102,0,0.2)] group
-                           bg-[#131313] cursor-pointer hover:text-[#FF6B00]"
+                className="flex flex-col items-center justify-center p-8 text-center bg-[#131313] border border-neutral-800 
+                           hover:border-orange-500/60 hover:shadow-[0_0_30px_rgba(255,102,0,0.15)] 
+                           transition-all duration-500 ease-out min-h-[200px] cursor-pointer group "
               >
                 <CardHeader>
                   <Icon
-                    className="h-10 w-10 sm:h-12 sm:w-12 text-primary mx-auto mb-4 
-                                   group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                    className="h-10 w-10 sm:h-12 sm:w-12 group-hover:text-orange-500 mx-auto mb-4 
+                               transition-transform duration-500 ease-out 
+                               group-hover:scale-110 group-hover:rotate-[10deg]"
                   />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">
-                    <Counter
-                      end={stat.value}
-                      duration={2000}
-                      suffix={stat.suffix}
-                    />
-                  </div>
-                  <CardDescription className="font-medium text-sm sm:text-base">
+                  <h3 className="text-4xl md:text-5xl font-extrabold group-hover:text-orange-500 mb-1">
+                    <Counter end={stat.value} duration={2000} suffix={stat.suffix} />
+                  </h3>
+                  <CardDescription className="text-gray-400 font-medium">
                     {stat.label}
                   </CardDescription>
                 </CardContent>

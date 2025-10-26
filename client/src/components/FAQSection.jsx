@@ -1,12 +1,11 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { HelpCircle, ChevronDown } from "lucide-react";
-
 
 const cn = (...classes) => classes.filter(Boolean).join(' ');
 
 const FAQSection = () => {
   
-  const [activeIndex, setActiveIndex] = React.useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
     {
@@ -36,7 +35,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-24 bg-black text-white font-sans">
+    <section className="py-12 bg-black text-white font-sans">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           
@@ -66,47 +65,38 @@ const FAQSection = () => {
                     "transform hover:scale-[1.01] hover:shadow-2xl"
                   )}
                 >
-                  {/* Question Text (No Click Handler) */}
-                  <div
+                  <button 
+                    onClick={() => toggleAccordion(index)}
                     className={cn(
-                      "group flex flex-1 items-center justify-between w-full py-4 text-left text-lg font-semibold transition-colors duration-300",
-                      isOpen ? 'text-orange-500' : 'text-white'
+                      "group flex flex-1 items-center justify-between w-full py-4 text-left text-lg font-semibold transition-colors duration-300 cursor-pointer", // <-- ADDED cursor-pointer
+                      isOpen ? 'text-orange-500' : 'text-white',
+                      !isOpen && 'hover:text-orange-400'
                     )}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-content-${index}`}
                   >
                     {faq.question}
 
-                    {/* Arrow Button with Click Handler */}
-                    <button 
-                      onClick={() => toggleAccordion(index)}
-                      className="p-1 -mr-1 rounded-full hover:bg-white/10 transition-colors duration-300"
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-content-${index}`}
-                    >
-                      <ChevronDown 
-                        className={cn(
-                          "h-5 w-5 shrink-0 transition-transform duration-300 cursor-pointer",
-                          isOpen ? "rotate-180" : "rotate-0",
-                          
-                          // Hover rotation is still applied for visual feedback on the button itself
-                          !isOpen && "hover:rotate-180",
-
-                          isOpen ? 'text-orange-500' : 'text-gray-400'
-                        )}
-                      />
-                    </button>
-                  </div>
+                    <ChevronDown 
+                      className={cn(
+                        "h-5 w-5 shrink-0 transition-transform duration-300",
+                        isOpen ? "rotate-180" : "rotate-0",
+                        isOpen ? 'text-orange-500' : 'text-gray-400',
+                        !isOpen && 'group-hover:text-orange-400'
+                      )}
+                    />
+                  </button>
 
                   <div
                     id={`faq-content-${index}`}
                     className="overflow-hidden transition-all duration-500 ease-in-out"
                     style={{
                       maxHeight: isOpen ? '500px' : '0',
-                      paddingBottom: isOpen ? '1rem' : '0',
                     }}
                   >
                     <p 
                         className={cn(
-                            "text-base text-gray-400 leading-relaxed transition-opacity duration-500",
+                            "text-base text-gray-400 leading-relaxed transition-opacity duration-500 pb-4", // Moved padding here
                             isOpen ? 'opacity-100' : 'opacity-0'
                         )}
                     >

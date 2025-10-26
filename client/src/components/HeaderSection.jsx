@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const HeaderSection = () => {
   return (
-    <section className="pt-35 pb-16 overflow-hidden min-h-[90vh] flex items-centerw-full w-full bg-[#1E1E1E] text-white p-4 ">
+    <section className="pt-35 pb-16 overflow-hidden flex items-centerw-full w-full bg-[#1E1E1E] text-white p-4 min-h-screen">
       <div className="relative inset-0 z-0"></div>
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ">
         <div className="max-w-5xl mx-auto text-center space-y-10">
